@@ -2,9 +2,8 @@ version: "3.3"
 services:
          user_auth:
               container_name: user_auth
-              image: user_auth:latest
               ports:
-                  - "5000:5000"
+                  - 5000:5000
               restart: always
               build: .
               links:
@@ -13,6 +12,6 @@ services:
               container_name: mongo
               image: mongo:latest
               ports:
-                  - "27017:27017"
+                  - 27017:27017
               volumes:
                   - ./data:/data/db

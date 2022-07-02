@@ -8,7 +8,8 @@ const jwt = require('jsonwebtoken');
 
 router.get('/product', getProducts)
 router.post('/product', postProducts)
-router.post('/auth/login', passport.authenticate('login', async (err, user, info) => {
+router.post('/auth/login',(req,res,next)=>{
+     passport.authenticate('login', async (err, user, info) => {
     try {
         if (err || !user) {
             const error = new Error('An error occured');
@@ -30,7 +31,7 @@ router.post('/auth/login', passport.authenticate('login', async (err, user, info
     return next(err);
 }
 }
-),sign_in)
+)})
 router.post('/auth/signup',passport.authenticate('signup',{session:false}), sign_up)
 
 

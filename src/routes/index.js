@@ -31,7 +31,7 @@ router.post('/auth/login',(req,res,next)=>{
     return next(err);
 }
 }
-)})
+)(req,res)})
 router.post('/auth/signup',passport.authenticate('signup',{session:false}), sign_up)
 
 

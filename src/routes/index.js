@@ -6,8 +6,8 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
 
-router.get('/product', getProducts)
-router.post('/product', postProducts)
+router.get('/products', getProducts)
+router.post('/product',passport.authenticate('jwt',{session: false}), postProducts)
 router.post('/auth/login',(req,res,next)=>{
      passport.authenticate('login', async (err, user, info) => {
     try {
@@ -22,7 +22,7 @@ router.post('/auth/login',(req,res,next)=>{
             const body = {
                 id: user._id, email: user.email, name: user.name
             };
-            const token = jwt.sign({ user: body }, 'top_secret', { expiresIn: '1h' });
+            const token = jwt.sign({ user: body }, '1234', { expiresIn: '1h' });
             return res.json({ token });
 
 

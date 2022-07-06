@@ -20,6 +20,7 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "swagger-jsdoc": "^6.2.1",
-    "swagger-ui-express": "^4.4.0"
+    "swagger-ui-express": "^4.4.0",
+    "swaggiffy": "^1.0.5"
   }
 }

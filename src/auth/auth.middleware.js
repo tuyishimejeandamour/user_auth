@@ -41,9 +41,10 @@ passport.use('login', new LocalStrategy({
 ));
 
 passport.use('jwt',new jwtStrategy({
-    secretOrKey:'TopSecret',
-    jwtFromRequest: jwtExtract.fromUrlQueryParameter('secret_token')
+    secretOrKey:'1234',
+    jwtFromRequest: jwtExtract.fromAuthHeaderAsBearerToken()
 },(payload,done)=>{
+    console.log(payload.user)
     try {
         done(null,payload.user);
     } catch (error) {

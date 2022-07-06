@@ -1,3 +1,5 @@
+const productmodel = require('../models/product.model');
+
 /**
  * @swagger
  * tags:
@@ -19,11 +21,37 @@
  * @param {*} res 
  */
 function getProducts(req, res) {
-  res.send('getProducts');
+   productmodel.find({}, (err, products) => { 
+        if (err) {    
+            res.status(500).json({
+                message: 'Error occurred while getting products',
+                error: err
+            }); 
+        } else {  
+            res.status(200).json({
+                message: 'Successfully got products',
+                products: products  
+            });
+        }
+    }
+    );
 }
 
  function postProducts(req, res) {
-  res.send('postProducts');
+   productmodel.create(req.body, (err, product) => {
+        if (err) {
+            res.status(500).json({
+                message: 'Error occurred while creating product', 
+                error: err
+            });
+        } else {
+            res.status(201).json({
+                message: 'Successfully created product',
+                product: product
+            });
+          }
+        }
+   )
 }
 
 

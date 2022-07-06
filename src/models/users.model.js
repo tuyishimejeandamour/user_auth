@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+import { registerSchema } from 'swaggiffy';
+
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const userSchema = new Schema({
@@ -27,6 +29,6 @@ userSchema.methods.comparePassword = function (password) {
 
 
 const UserModel = mongoose.model('Users', userSchema);
-
+registerSchema("User",{})
 
 module.exports = UserModel;

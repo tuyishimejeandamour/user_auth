@@ -3,6 +3,7 @@ const app = express()
 const swaggerUI = require('swagger-ui-express')
 const doc = require('swagger-jsdoc')
 const BodyParser = require('body-parser')
+const swaggiffy = require("swaggiffy")
 require('./models/db')
 require('./auth/auth.middleware');
 const swaggerOption = {
@@ -28,6 +29,9 @@ const docs = doc(swaggerOption);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs));
 const routers = require('./routes/index')
 app.use('/api/v1', routers)
+
+new Swaggiffy().setupExpress(app).swaggiffy();
+
 // app.use(function (err, req, res, next) {
 //     res.status(err.status || 500);
 //     res.json({error:err})
